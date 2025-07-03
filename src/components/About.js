@@ -97,14 +97,14 @@ const HighlightText = styled.span`
 
 const InfoGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 `;
 
 const InfoItem = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
   
   span:first-child {
@@ -114,6 +114,7 @@ const InfoItem = styled.div`
   
   span:last-child {
     color: #6b7280;
+    word-break: break-word;
   }
 `;
 
@@ -296,7 +297,7 @@ const About = () => {
       period: "Expected Graduation: Dec 2025",
       location: "Charlottesville, USA",
       gpa: "3.86/4",
-      courses: "Machine Learning for Software Reliability, Natural Language Processing, Machine Learning, Human Computer Interaction"
+      courses: "Machine Learning for Software Reliability, Natural Language Processing, Machine Learning, Software Analysis, Resonsible AI"
     },
     {
       id: 2,
@@ -352,29 +353,25 @@ const About = () => {
               </p>
               
               <InfoGrid>
-                <InfoItem>
-                  <span>Email:</span>
-                  <span>chaitanya.shahane6@gmail.com</span>
-                </InfoItem>
-                <InfoItem>
-                  <span>Phone:</span>
-                  <span>(434)-227-9248</span>
-                </InfoItem>
-                <InfoItem>
-                  <span>Location:</span>
-                  <span>Charlottesville, Virginia</span>
-                </InfoItem>
-                <InfoItem>
-                  <span>LinkedIn:</span>
-                  <span>linkedin.com/in/Chaitanya-Shahane</span>
-                </InfoItem>
-                <InfoItem>
-                  <span>GitHub:</span>
-                  <span>github.com/ChaitanyaRS06</span>
-                </InfoItem>
-              </InfoGrid>
+                  <InfoItem>
+                    <span>Email:</span>
+                    <span>chaitanya.shahane6@gmail.com</span>
+                  </InfoItem>
+                  <InfoItem>
+                    <span>Location:</span>
+                    <span>Charlottesville, Virginia</span>
+                  </InfoItem>
+                  <InfoItem>
+                    <span>LinkedIn:</span>
+                    <span>linkedin.com/in/chaitanya-shahane06/</span>
+                  </InfoItem>
+                  <InfoItem>
+                    <span>GitHub:</span>
+                    <span>github.com/ChaitanyaRS06</span>
+                  </InfoItem>
+                </InfoGrid>
               
-              <ResumeButton href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <ResumeButton href="https://drive.google.com/file/d/1MffC8O9PyDlq2MS98F95ZH4Mn0CuwxOE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                 Download Resume
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{marginLeft: '8px'}}>
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>

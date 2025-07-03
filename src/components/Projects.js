@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -89,22 +90,10 @@ const ProjectCard = styled(motion.div)`
   }
 `;
 
-const ProjectImage = styled.div`
-  height: 200px;
-  background-color: #e5e7eb;
+const ProjectCardHeader = styled.div`
+  height: 50px; /* Small placeholder for the header */
+  background-color: #2563eb;
   position: relative;
-  overflow: hidden;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  &:hover img {
-    transform: scale(1.05);
-  }
 `;
 
 const ProjectCategory = styled.span`
@@ -186,19 +175,65 @@ const ProjectLink = styled.a`
   }
 `;
 
+const ProjectDetailLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #1d4ed8;
+  }
+  
+  svg {
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: translateX(2px);
+  }
+`;
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   
   const projectsData = [
     {
       id: 1,
-      title: "Enhanced Inline Testing Framework for Deep Learning Libraries",
+      title: "Few-Shot Differential Testing Framework for Deep Learning APIs",
       category: "Research",
-      description: "Research-oriented framework to validate output consistency across CPUs/GPUs in PyTorch and TensorFlow (differential testing). Integrated GPT API for automated inline test generation using few-shot learning.",
-      image: "project1.jpg",
-      techStack: ["Python", "GPT API", "LLaMA 3.3 70B", "PyTorch", "TensorFlow", "AST", "Docker", "Slurm"],
-      demoLink: "#",
-      codeLink: "#"
+      description: "Developed a few-shot learning framework that uses a curated pool of 1300 deep learning APIs to generate over 54,000 inline differential tests for 5469 unique APIs. Invalid outputs are iteratively recycled into the model to improve valid test generation.",
+      techStack: ["Python", "GPT API", "PyTorch", "TensorFlow", "AST", "Docker", "Slurm"],
+      detailsLink: "/project-details/differential-testing",
+      
+    },
+    {
+      id: 2,
+      title: "LLM-Powered Fuzzing for Log4J",
+      category: "Security",
+      description: "Implemented a fuzzing workflow using Jazzer to test Log4J. Valid fuzz tests were fed as few-shot examples to an LLM which then generated new fuzz inputs to improve code coverage and uncover potential bugs.",
+      techStack: ["Jazzer", "Java", "Log4J", "LLM APIs", "Few-shot learning", "LLaMA 3.3 70B"],
+      
+    },
+    {
+      id: 3,
+      title: "Student Database Management System",
+      category: "Web Application",
+      description: "Student Database Management System with comprehensive CRUD operations APIs, enabling efficient data querying and manipulation with elaborate testing techniques.",
+      techStack: ["Spring Boot", "Java", "JUnit", "Mockito", "Karate", "SQL", "Automation Testing", "REST API"],
+      
+    },
+    {
+      id: 4,
+      title: "Project Allocation System",
+      category: "Web Development",
+      description: "Developed a web-based system enabling students to register skills and faculty to post projects with required skill sets. Automated project-student mapping based on skill alignment.",
+      techStack: ["Java", "JSP", "HTML", "CSS", "SQL", "REST API"],
+      
     },
     {
       id: 2,
@@ -207,34 +242,14 @@ const Projects = () => {
       description: "Research oriented project isolating specific FRB signals from other radio waves (possible signals from extraterrestrial life), data collected from GMRT (Giant Metrewave Radio Telescope).",
       image: "project2.jpg",
       techStack: ["Python", "TensorFlow", "Matplotlib", "Neural Networks"],
-      demoLink: "#",
-      codeLink: "#"
-    },
-    {
-      id: 3,
-      title: "Student Database Management System",
-      category: "Web Application",
-      description: "Student Database Management System with comprehensive CRUD operations APIs, enabling efficient data querying and manipulation with elaborate testing techniques.",
-      image: "project3.jpg",
-      techStack: ["Spring Boot", "JUnit", "Mockito", "Karate", "MySQL", "Automation Testing", "REST API"],
-      demoLink: "#",
-      codeLink: "#"
-    },
-    {
-      id: 4,
-      title: "Project Allocation System",
-      category: "Web Development",
-      description: "Developed a web-based system enabling students to register skills and faculty to post projects with required skill sets. Automated project-student mapping based on skill alignment.",
-      image: "project4.jpg",
-      techStack: ["Java", "JSP", "HTML", "CSS", "MySQL", "REST API"],
-      demoLink: "#",
-      codeLink: "#"
+
     }
   ];
   
   const filters = [
     { label: 'All', value: 'all' },
     { label: 'Research', value: 'Research' },
+    { label: 'Security', value: 'Security' },
     { label: 'Web Application', value: 'Web Application' },
     { label: 'Web Development', value: 'Web Development' }
   ];
@@ -260,7 +275,7 @@ const Projects = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <ProjectsIntro>
-            Here are some of my recent projects spanning research, web development, and software engineering. 
+            Here are some of my recent projects spanning research, security, web development, and software engineering. 
             Each project represents a unique challenge and showcases different aspects of my technical skills.
           </ProjectsIntro>
         </motion.div>
@@ -292,32 +307,37 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
             >
               <ProjectCard>
-                <ProjectImage>
-                  {/* <img src={`/assets/images/${project.image}`} alt={project.title} /> */}
+                <ProjectCardHeader>
                   <ProjectCategory>{project.category}</ProjectCategory>
-                </ProjectImage>
+                </ProjectCardHeader>
                 <ProjectContent>
                   <ProjectTitle>{project.title}</ProjectTitle>
                   <ProjectDescription>{project.description}</ProjectDescription>
                   <ProjectTechStack>
-                    {project.techStack.map((tech, i) => (
+                    {project.techStack.slice(0, 4).map((tech, i) => (
                       <TechTag key={i}>{tech}</TechTag>
                     ))}
+                    {project.techStack.length > 4 && (
+                      <TechTag>+{project.techStack.length - 4} more</TechTag>
+                    )}
                   </ProjectTechStack>
                   <ProjectLinks>
-                    <ProjectLink href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                      Live Demo
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                      </svg>
-                    </ProjectLink>
-                    <ProjectLink href={project.codeLink} target="_blank" rel="noopener noreferrer">
-                      View Code
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                      </svg>
-                    </ProjectLink>
+                    {project.detailsLink && (
+                      <ProjectDetailLink to={project.detailsLink}>
+                        View Details
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                      </ProjectDetailLink>
+                    )}
+                    {project.codeLink && (
+                      <ProjectLink href={project.codeLink} target="_blank" rel="noopener noreferrer">
+                        View Code
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                      </ProjectLink>
+                    )}
                   </ProjectLinks>
                 </ProjectContent>
               </ProjectCard>
