@@ -340,7 +340,7 @@ const Home = () => {
             <PrimaryButton to="/projects">View My Work</PrimaryButton>
             <SecondaryButton to="/contact">Contact Me</SecondaryButton>
             <ResumeButton 
-    href="https://drive.google.com/file/d/1MffC8O9PyDlq2MS98F95ZH4Mn0CuwxOE/view?usp=sharing" 
+    href="https://drive.google.com/file/d/1Scz9vxcDauX9UFnh4A3DYQfJkSGoNwe4/view?usp=drive_link" 
     target="_blank" 
     rel="noopener noreferrer"
   >
