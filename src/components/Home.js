@@ -327,7 +327,7 @@ const Home = () => {
       
       <br /><br />
       
-      I am currently working on my thesis under Professor <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a>, Department of Computer Science UVA, on the topic of <strong>Few-Shot Differential Testing Framework for Deep Learning APIs</strong>. I am also advised by Professor <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a>, Department of CS, University of Waterloo, Canada.
+      I am currently working on my thesis under Professor <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a>, Department of Computer Science UVA, on the topic of <strong>Few-Shot Differential Testing Framework for Deep Learning APIs</strong>. My research has discovered <strong>16 buggy PyTorch APIs</strong> with confirmed developer validation, demonstrating real-world impact in improving deep learning library reliability. I am also advised by Professor <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a>, Department of CS, University of Waterloo, Canada.
 </Description>
         </motion.div>
         

@@ -206,12 +206,12 @@ const Projects = () => {
     id: 1,
     title: "DIFFITESTGEN: LLM-Powered Differential Testing for Deep Learning APIs",
     category: "Research",
-    description: "Developed an innovative few-shot learning framework that discovered 228 divergences across 47 PyTorch APIs, with 8 confirmed bugs by PyTorch developers. Generated 7,464 valid differential inline tests using GPT-4o and achieved 41.0% API coverage, outperforming state-of-the-art fuzzing techniques.",
+    description: "Developed an innovative few-shot learning framework that discovered 228 divergences across 47 PyTorch APIs, with 16 confirmed bugs by PyTorch developers. Generated 7,464 valid differential inline tests using GPT-4o and achieved 41.0% API coverage, outperforming state-of-the-art fuzzing techniques.",
     techStack: ["Python", "GPT-4o", "PyTorch", "TensorFlow", "AST", "Docker", "Slurm", "NVIDIA A100/H200"],
     detailsLink: "/project-details/differential-testing",
     highlights: [
-      "🐛 228 divergences found across 47 APIs",
-      "✅ 8 confirmed bugs by PyTorch developers", 
+      "🐛 16 buggy PyTorch APIs discovered & confirmed",
+      "🐛 228 divergences found across 47 APIs", 
       "🚀 41.0% API coverage (vs 33.4% baseline)",
       "🧪 7,464 valid differential inline tests generated"
     ]

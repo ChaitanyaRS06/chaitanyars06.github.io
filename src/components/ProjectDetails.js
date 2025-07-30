@@ -153,11 +153,11 @@ const projectDetails = {
   'differential-testing': {
     title: "DIFFITESTGEN: LLM-Powered Differential Testing Framework for Deep Learning APIs",
     category: "Research",
-    overview: "A groundbreaking framework that extends inline testing to support differential testing, powered by LLM-based test generation. DIFFITESTGEN discovered 228 divergences across 47 PyTorch APIs, with 8 confirmed bugs by PyTorch developers, demonstrating significant real-world impact in deep learning library testing.",
+    overview: "A groundbreaking framework that extends inline testing to support differential testing, powered by LLM-based test generation. DIFFITESTGEN discovered 228 divergences across 47 PyTorch APIs, with 16 APIs confirmed bugs by PyTorch developers, demonstrating significant real-world impact in deep learning library testing.",
     description: [
       "DIFFITESTGEN introduces differential inline tests as a novel solution to the test oracle problem in inline testing. Unlike traditional inline tests that require explicit expected outputs, differential inline tests check whether outputs diverge when executing the same statement under different conditions (e.g., CPU vs CUDA devices).",
       "The framework leverages a sophisticated three-stage pipeline: bootstrapping creates a pool of differential inline test examples by translating existing fuzzing inputs; generation employs GPT-4o with retrieval-augmented generation to create comprehensive tests targeting corner cases; and refinement iteratively fixes invalid tests based on execution feedback.",
-      "Our evaluation on 2,169 PyTorch APIs generated 7,464 valid differential inline tests with a 34.4% success rate, achieving 41.0% API coverage compared to 33.4% for the state-of-the-art TitanFuzz baseline. The framework identified 228 divergences across 47 APIs, with 15 confirmed as genuine differential bugs."
+      "Our evaluation on 2,169 PyTorch APIs generated 7,464 valid differential inline tests with a 34.4% success rate, achieving 41.0% API coverage compared to 33.4% for the state-of-the-art TitanFuzz baseline. The framework identified 228 divergences across 47 APIs, with 16 confirmed as genuine differential bugs."
     ],
     phases: [
       {
@@ -170,7 +170,7 @@ const projectDetails = {
       },
       {
         title: "Phase 3: Large-Scale Evaluation and Bug Discovery",
-        details: "Conducted extensive evaluation on 2,169 PyTorch APIs using AMD EPYC 7742 64-Core CPU and NVIDIA A100 80GB GPU. Generated 21,680 total tests resulting in 7,464 valid tests. Discovered 228 divergences across 47 APIs, with 15 APIs having genuine differential bugs. Successfully reported 12 GitHub issues to PyTorch developers with 8 confirmed as of publication."
+        details: "Conducted extensive evaluation on 2,169 PyTorch APIs using AMD EPYC 7742 64-Core CPU and NVIDIA A100 80GB GPU. Generated 21,680 total tests resulting in 7,464 valid tests. Discovered 228 divergences across 47 APIs, with 16 APIs having genuine differential bugs. Successfully reported 12 GitHub issues to PyTorch developers with 16 confirmed as of publication."
       }
     ],
     keyFeatures: [
@@ -190,7 +190,7 @@ const projectDetails = {
     ],
     results: [
       "228 divergences discovered across 47 unique PyTorch APIs",
-      "15 APIs identified with genuine differential bugs",
+      "16 APIs identified with genuine differential bugs",
       "8 out of 12 reported GitHub issues confirmed by PyTorch developers",
       "7,464 valid differential inline tests generated (34.4% success rate)",
       "41.0% API coverage achieved (vs 33.4% for TitanFuzz baseline)",
@@ -209,7 +209,7 @@ const projectDetails = {
       "Test Generation: 21,680 total tests, 7,464 valid tests",
       "Success Rate: 34.4% overall (30.6% generation + 3.8% refinement improvement)",
       "Bug Discovery: 228 divergences, 47 unique APIs affected",
-      "Confirmation Rate: 8/12 reported issues confirmed by PyTorch developers",
+      "Confirmation Rate: 16 APIs confirmed as bugs by PyTorch developers",
       "Coverage Comparison: 41.0% API coverage vs 33.4% for TitanFuzz"
     ],
     techStack: [
