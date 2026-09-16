@@ -72,10 +72,16 @@ const Greeting = styled.h2`
 `;
 
 const Name = styled.h1`
-  font-size: 3rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
   color: #1f2937;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -132,20 +138,20 @@ const ButtonsContainer = styled.div`
 
 
 const PrimaryButton = styled(Link)`
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.5);
 
   &:hover {
-    background-color: #1d4ed8;
     transform: translateY(-2px);
+    box-shadow: 0 12px 24px -6px rgba(124, 58, 237, 0.55);
   }
 `;
 
@@ -153,7 +159,7 @@ const SecondaryButton = styled(Link)`
   border: 2px solid #2563eb;
   color: #2563eb;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
@@ -170,7 +176,7 @@ const ResumeButton = styled.a`
   background-color: #10B981; /* A green color to differentiate from the other buttons */
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
@@ -188,7 +194,7 @@ const CodeDot = styled.span`
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  background-color: ${props => props.color};
+  background-color: ${props => props.$color};
   margin-right: 8px;
 `;
 
@@ -223,16 +229,10 @@ const TypedText = ({ texts, delay = 100, pauseTime = 1000 }) => {
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <CodeDot color="#10B981" />
+        <CodeDot $color="#10B981" />
         {displayText}
         <span style={{ borderRight: '2px solid #2563eb', marginLeft: '2px', animation: 'blink 1s step-end infinite' }}></span>
       </div>
-      <style jsx>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-      `}</style>
     </>
   );
 };
@@ -251,12 +251,14 @@ const Circle = styled.div`
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0) 70%);
+  animation: float 9s ease-in-out infinite;
 
   &:nth-child(1) {
     width: 300px;
     height: 300px;
     top: -150px;
     right: 10%;
+    animation-duration: 11s;
   }
 
   &:nth-child(2) {
@@ -264,6 +266,9 @@ const Circle = styled.div`
     height: 400px;
     bottom: -200px;
     left: 10%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.18) 0%, rgba(124, 58, 237, 0) 70%);
+    animation-duration: 14s;
+    animation-delay: -3s;
   }
 
   &:nth-child(3) {
@@ -271,15 +276,15 @@ const Circle = styled.div`
     height: 200px;
     top: 30%;
     right: 20%;
+    animation-duration: 9s;
+    animation-delay: -1.5s;
   }
 `;
 
 const Home = () => {
   const roles = [
-    "Software Developer", 
-    "Machine Learning Engineer", 
-    "Research Assistant",
-    "Graduate Student at UVA"
+    "AI Engineer @ RootLogic Systems",
+    "MS Computer Science, UVA"
   ];
 
   return (
@@ -323,11 +328,11 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <Description>
-      I specialize in building robust software solutions and exploring the frontiers of machine learning and software testing. Currently pursuing my Master's in Computer Science at the University of Virginia.
-      
+      I'm an AI Engineer at RootLogic Systems, building end-to-end AI stacks for production-ready systems — working across LLMs, agent orchestration, memory, evaluations, and observability. I design high-impact agent workflows that have delivered strong real-world results.
+
       <br /><br />
-      
-      I am currently working on my thesis under Professor <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a>, Department of Computer Science UVA, on the topic of <strong>Few-Shot Differential Testing Framework for Deep Learning APIs</strong>. My research has discovered <strong>16 buggy PyTorch APIs</strong> with confirmed developer validation, demonstrating real-world impact in improving deep learning library reliability. I am also advised by Professor <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a>, Department of CS, University of Waterloo, Canada.
+
+      I hold a Master's in Computer Science from the University of Virginia (Dec 2025). For my thesis on <strong>Differential Inline Testing</strong>, I built <strong>DiffITestGen</strong> — an LLM-powered framework that generates differential tests for deep learning APIs, surfacing <strong>12 differential bugs in PyTorch (7 confirmed by PyTorch developers)</strong>. I was advised by Professor <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a> (CS, UVA) and Professor <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a> (CS, University of Waterloo).
 </Description>
         </motion.div>
         

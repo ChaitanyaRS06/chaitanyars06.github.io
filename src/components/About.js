@@ -13,6 +13,7 @@ const AboutWrapper = styled.div`
 `;
 
 const SectionTitle = styled.h2`
+  font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1f2937;
@@ -25,7 +26,7 @@ const SectionTitle = styled.h2`
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     margin: 0.75rem auto 3rem;
     border-radius: 2px;
   }
@@ -294,7 +295,7 @@ const About = () => {
       id: 1,
       institution: "University of Virginia",
       degree: "Master of Science in Computer Science",
-      period: "Expected Graduation: Dec 2025",
+      period: "Graduated: Dec 2025",
       location: "Charlottesville, USA",
       gpa: "3.86/4",
       courses: "Machine Learning for Software Reliability, Natural Language Processing, Machine Learning, Software Analysis, Resonsible AI"
@@ -341,15 +342,17 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <AboutTextContainer>
-              <h3>I'm <HighlightText>Chaitanya Shahane</HighlightText>, a Software Developer & Research Assistant</h3>
+              <h3>I'm <HighlightText>Chaitanya Shahane</HighlightText>, an AI Engineer & Researcher</h3>
               <p>
-                I am a passionate Computer Science graduate student at the University of Virginia, specializing in software development, 
-                machine learning, and research in software testing. With experience in both academic and professional environments, 
-                I combine theoretical knowledge with practical implementation to build efficient and innovative solutions.
+                I'm an AI Engineer at RootLogic Systems, where I build end-to-end AI stacks for production-ready
+                systems — working across LLMs, agent orchestration, memory, evaluations, and observability. I design
+                high-impact agent workflows that have delivered strong real-world results. I earned my
+                Master's in Computer Science from the University of Virginia in December 2025.
               </p>
               <p>
-                My journey in computer science is driven by a curiosity to explore new technologies and solve complex problems. 
-                I'm particularly interested in enhancing software reliability through advanced testing frameworks and machine learning applications.
+                My work spans production AI systems and research. During my Master's I focused on improving software
+                reliability through LLM-powered testing — culminating in my thesis, <HighlightText>DIFFITESTGEN</HighlightText>,
+                advised by Professor Wenxi Wang (UVA) and Professor Pengyu Nie (University of Waterloo).
               </p>
               
               <InfoGrid>
@@ -359,7 +362,7 @@ const About = () => {
                   </InfoItem>
                   <InfoItem>
                     <span>Location:</span>
-                    <span>Charlottesville, Virginia</span>
+                    <span>Vienna, Virginia</span>
                   </InfoItem>
                   <InfoItem>
                     <span>LinkedIn:</span>
@@ -371,7 +374,7 @@ const About = () => {
                   </InfoItem>
                 </InfoGrid>
               
-              <ResumeButton href="https://drive.google.com/file/d/1MffC8O9PyDlq2MS98F95ZH4Mn0CuwxOE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <ResumeButton href="https://drive.google.com/file/d/1Scz9vxcDauX9UFnh4A3DYQfJkSGoNwe4/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                 Download Resume
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{marginLeft: '8px'}}>
                   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>

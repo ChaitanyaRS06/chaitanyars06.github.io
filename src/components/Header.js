@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -8,22 +8,28 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.06);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  box-shadow: ${props => props.scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
+  box-shadow: ${props => props.$scrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
   transition: all 0.3s ease;
 `;
 
 const Logo = styled(Link)`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const NavLinks = styled.div`
@@ -31,7 +37,7 @@ const NavLinks = styled.div`
   gap: 2rem;
 
   @media (max-width: 768px) {
-    display: ${props => props.isOpen ? 'flex' : 'none'};
+    display: ${props => props.$isOpen ? 'flex' : 'none'};
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -85,7 +91,8 @@ const MobileMenuButton = styled.button`
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activePath, setActivePath] = useState('/');
+  const location = useLocation();
+  const activePath = location.pathname;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -106,26 +113,17 @@ const Header = () => {
       }
     };
 
-    const handleLocation = () => {
-      setActivePath(window.location.pathname);
-    };
-
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-    window.addEventListener('popstate', handleLocation);
-    
-    // Set initial path
-    setActivePath(window.location.pathname);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('popstate', handleLocation);
     };
   }, []);
 
   return (
-    <Nav scrolled={scrolled}>
+    <Nav $scrolled={scrolled}>
       <Logo to="/">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -140,7 +138,7 @@ const Header = () => {
         {isMenuOpen ? '✕' : '☰'}
       </MobileMenuButton>
       
-      <NavLinks isOpen={isMenuOpen}>
+      <NavLinks $isOpen={isMenuOpen}>
         {[
           { path: '/', label: 'Home' },
           { path: '/about', label: 'About' },

@@ -8,12 +8,14 @@ import Projects from './components/Projects';
 import ProjectDetails from './components/ProjectDetails'; // Import the new component
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Analytics from './components/Analytics';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Analytics />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

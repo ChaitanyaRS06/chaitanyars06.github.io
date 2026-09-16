@@ -14,6 +14,7 @@ const ProjectsWrapper = styled.div`
 `;
 
 const SectionTitle = styled.h2`
+  font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1f2937;
@@ -26,7 +27,7 @@ const SectionTitle = styled.h2`
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     margin: 0.75rem auto 3rem;
     border-radius: 2px;
   }
@@ -50,17 +51,18 @@ const FilterButtons = styled.div`
 `;
 
 const FilterButton = styled.button`
-  background-color: ${props => props.active ? '#2563eb' : '#f3f4f6'};
-  color: ${props => props.active ? 'white' : '#4b5563'};
+  background: ${props => props.$active ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' : '#f3f4f6'};
+  color: ${props => props.$active ? 'white' : '#4b5563'};
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 9999px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+  box-shadow: ${props => props.$active ? '0 6px 14px -4px rgba(124, 58, 237, 0.5)' : 'none'};
+
   &:hover {
-    background-color: ${props => props.active ? '#2563eb' : '#e5e7eb'};
+    background: ${props => props.$active ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' : '#e5e7eb'};
   }
 `;
 
@@ -92,7 +94,7 @@ const ProjectCard = styled(motion.div)`
 
 const ProjectCardHeader = styled.div`
   height: 50px; /* Small placeholder for the header */
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   position: relative;
 `;
 
@@ -204,16 +206,16 @@ const Projects = () => {
   const projectsData = [
    {
     id: 1,
-    title: "DIFFITESTGEN: LLM-Powered Differential Testing for Deep Learning APIs",
+    title: "DiffITestGen: LLM-Powered Differential Inline Testing for Deep Learning APIs",
     category: "Research",
-    description: "Developed an innovative few-shot learning framework that discovered 228 divergences across 47 PyTorch APIs, with 16 confirmed bugs by PyTorch developers. Generated 7,464 valid differential inline tests using GPT-4o and achieved 41.0% API coverage, outperforming state-of-the-art fuzzing techniques.",
-    techStack: ["Python", "GPT-4o", "PyTorch", "TensorFlow", "AST", "Docker", "Slurm", "NVIDIA A100/H200"],
+    description: "Master's thesis. Built an LLM-powered framework that generates and refines differential inline tests for PyTorch APIs. Evaluated on 1,550 PyTorch APIs — generating 9,654 valid tests (62.5% success rate) and surfacing 215 divergences across 53 APIs, yielding 12 differential bugs with 7 confirmed by PyTorch developers.",
+    techStack: ["Python", "GPT-4o", "PyTorch", "pytest-inline", "RAG", "AST", "Docker", "Slurm"],
     detailsLink: "/project-details/differential-testing",
     highlights: [
-      "🐛 16 buggy PyTorch APIs discovered & confirmed",
-      "🐛 228 divergences found across 47 APIs", 
-      "🚀 41.0% API coverage (vs 33.4% baseline)",
-      "🧪 7,464 valid differential inline tests generated"
+      "🐛 12 differential bugs found, 7 confirmed by PyTorch developers",
+      "🔍 215 divergences across 53 PyTorch APIs",
+      "🧪 9,654 valid differential inline tests (62.5% success)",
+      "📈 1,092 lines covered beyond PyTorch's unit tests"
     ]
   },
     {
@@ -241,7 +243,7 @@ const Projects = () => {
       
     },
     {
-      id: 2,
+      id: 5,
       title: "Enhanced FRB Signal Detection for Astrophysics",
       category: "Research",
       description: "Research oriented project isolating specific FRB signals from other radio waves (possible signals from extraterrestrial life), data collected from GMRT (Giant Metrewave Radio Telescope).",
@@ -294,7 +296,7 @@ const Projects = () => {
             {filters.map(filter => (
               <FilterButton
                 key={filter.value}
-                active={activeFilter === filter.value}
+                $active={activeFilter === filter.value}
                 onClick={() => setActiveFilter(filter.value)}
               >
                 {filter.label}

@@ -128,19 +128,20 @@ const ButtonGroup = styled.div`
 `;
 
 const Button = styled.a`
-  background-color: ${props => props.primary ? '#2563eb' : 'transparent'};
-  color: ${props => props.primary ? 'white' : '#2563eb'};
-  border: ${props => props.primary ? 'none' : '1px solid #2563eb'};
+  background: ${props => props.$primary ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' : 'transparent'};
+  color: ${props => props.$primary ? 'white' : '#2563eb'};
+  border: ${props => props.$primary ? 'none' : '1px solid #2563eb'};
   padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
-  
+  box-shadow: ${props => props.$primary ? '0 8px 20px -6px rgba(37, 99, 235, 0.5)' : 'none'};
+
   &:hover {
-    background-color: ${props => props.primary ? '#1d4ed8' : 'rgba(37, 99, 235, 0.1)'};
+    background: ${props => props.$primary ? 'linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%)' : 'rgba(37, 99, 235, 0.08)'};
     transform: translateY(-2px);
   }
   
@@ -151,13 +152,13 @@ const Button = styled.a`
 
 const projectDetails = {
   'differential-testing': {
-    title: "DIFFITESTGEN: LLM-Powered Differential Testing Framework for Deep Learning APIs",
+    title: "DiffITestGen: LLM-Powered Differential Inline Testing for Deep Learning APIs",
     category: "Research",
-    overview: "A groundbreaking framework that extends inline testing to support differential testing, powered by LLM-based test generation. DIFFITESTGEN discovered 228 divergences across 47 PyTorch APIs, with 16 APIs confirmed bugs by PyTorch developers, demonstrating significant real-world impact in deep learning library testing.",
+    overview: "My Master's thesis. DiffITestGen extends inline testing to support differential testing, powered by LLM-based test generation. Evaluated on 1,550 PyTorch APIs, it generated 9,654 valid differential inline tests (62.5% success rate) and discovered 215 divergences across 53 APIs — yielding 12 genuine differential bugs, 7 of which were confirmed by PyTorch developers.",
     description: [
       "DIFFITESTGEN introduces differential inline tests as a novel solution to the test oracle problem in inline testing. Unlike traditional inline tests that require explicit expected outputs, differential inline tests check whether outputs diverge when executing the same statement under different conditions (e.g., CPU vs CUDA devices).",
       "The framework leverages a sophisticated three-stage pipeline: bootstrapping creates a pool of differential inline test examples by translating existing fuzzing inputs; generation employs GPT-4o with retrieval-augmented generation to create comprehensive tests targeting corner cases; and refinement iteratively fixes invalid tests based on execution feedback.",
-      "Our evaluation on 2,169 PyTorch APIs generated 7,464 valid differential inline tests with a 34.4% success rate, achieving 41.0% API coverage compared to 33.4% for the state-of-the-art TitanFuzz baseline. The framework identified 228 divergences across 47 APIs, with 16 confirmed as genuine differential bugs."
+      "We evaluated the framework across two scenarios: library developers (11,619 tensor-assignment statements, 73.74% success rate) and library users (1,550 PyTorch APIs, 62.5% success rate). For the user scenario, DiffITestGen generated 9,654 valid differential inline tests and covered 1,092 lines of code not exercised by PyTorch's unit tests. It surfaced 215 divergences across 53 APIs; after filtering out expected cross-device randomness, 12 genuine differential bugs remained, 7 of which were confirmed by PyTorch developers."
     ],
     phases: [
       {
@@ -169,14 +170,13 @@ const projectDetails = {
         details: "Developed a comprehensive three-stage framework: (1) Bootstrapping stage that translates TitanFuzz-generated inputs into differential inline test format, (2) Generation stage using GPT-4o with semantic similarity search and API documentation retrieval, and (3) Refinement stage with iterative error correction based on execution feedback."
       },
       {
-        title: "Phase 3: Large-Scale Evaluation and Bug Discovery",
-        details: "Conducted extensive evaluation on 2,169 PyTorch APIs using AMD EPYC 7742 64-Core CPU and NVIDIA A100 80GB GPU. Generated 21,680 total tests resulting in 7,464 valid tests. Discovered 228 divergences across 47 APIs, with 16 APIs having genuine differential bugs. Successfully reported 12 GitHub issues to PyTorch developers with 16 confirmed as of publication."
+        details: "Conducted a large-scale evaluation on 1,550 PyTorch APIs (library-user scenario), generating 9,654 valid differential inline tests at a 62.5% success rate and covering 1,092 lines beyond PyTorch's unit tests. Discovered 215 divergences across 53 APIs; after excluding expected cross-device randomness, 12 differential bugs were reported via 12 grouped GitHub issues, with 7 confirmed by PyTorch developers."
       }
     ],
     keyFeatures: [
       "Novel differential inline testing syntax that eliminates the need for explicit expected outputs",
       "LLM-powered test generation using GPT-4o with few-shot learning and retrieval-augmented generation",
-      "Sophisticated error analysis and iterative refinement with 10 curated correction rules",
+      "Sophisticated error analysis and iterative refinement driven by execution feedback",
       "Cross-device consistency validation between CPU and CUDA implementations",
       "Automated translation pipeline from fuzzing inputs to differential inline tests",
       "Comprehensive evaluation framework with detailed error pattern analysis"
@@ -186,38 +186,38 @@ const projectDetails = {
       "Context Retrieval: Semantic similarity search over bootstrapped examples and API documentation",
       "Iterative Refinement: Multi-stage error correction with specialized LLM agents",
       "Stochastic Operation Handling: Random seed control for reproducible cross-device testing",
-      "Error Pattern Analysis: Comprehensive categorization of 114,875 error instances across 21,680 tests"
+      "Error Pattern Analysis: Comprehensive categorization of error types across both evaluation scenarios"
     ],
     results: [
-      "228 divergences discovered across 47 unique PyTorch APIs",
-      "16 APIs identified with genuine differential bugs",
-      "8 out of 12 reported GitHub issues confirmed by PyTorch developers",
-      "7,464 valid differential inline tests generated (34.4% success rate)",
-      "41.0% API coverage achieved (vs 33.4% for TitanFuzz baseline)",
-      "Superior performance in cross-device consistency testing compared to traditional fuzzing"
+      "215 divergences discovered across 53 unique PyTorch APIs",
+      "12 genuine differential bugs identified after filtering expected cross-device randomness",
+      "7 confirmed as previously unknown bugs by PyTorch developers (12 GitHub issues submitted)",
+      "9,654 valid differential inline tests generated (62.5% success rate)",
+      "1,092 lines of code covered beyond PyTorch's unit tests",
+      "Superior API coverage compared to state-of-the-art LLM-based fuzzing"
     ],
     technologies: [
-      "LLM Integration: GPT-4o (version 2024-08-06) with temperature 0.8 and top-p 0.95",
-      "Deep Learning Frameworks: PyTorch 2.6, TensorFlow",
-      "Infrastructure: Docker containerization, Slurm job scheduler",
-      "Hardware: AMD EPYC 7742 64-Core CPU, NVIDIA A100 80GB GPU",
+      "LLM Integration: GPT-4o for differential inline test generation and refinement",
+      "Deep Learning Library Under Test: PyTorch (CPU vs. CUDA cross-device comparison)",
+      "Infrastructure: Docker containerization, Slurm job scheduler, GPU compute",
+      "Retrieval: Retrieval-augmented generation over API docs and bootstrapped examples",
       "Testing Framework: pytest-inline extension with differential testing support",
       "Code Analysis: Python AST for dependency tracking and operation detection"
     ],
     evaluation: [
-      "Dataset: 2,169 PyTorch APIs from official API index",
-      "Test Generation: 21,680 total tests, 7,464 valid tests",
-      "Success Rate: 34.4% overall (30.6% generation + 3.8% refinement improvement)",
-      "Bug Discovery: 228 divergences, 47 unique APIs affected",
-      "Confirmation Rate: 16 APIs confirmed as bugs by PyTorch developers",
-      "Coverage Comparison: 41.0% API coverage vs 33.4% for TitanFuzz"
+      "Dataset: 1,550 PyTorch APIs (library-user scenario)",
+      "Test Generation: 9,654 valid differential inline tests",
+      "Success Rate: 62.5% (library users) / 73.74% (library developers)",
+      "Bug Discovery: 215 divergences across 53 unique APIs",
+      "Confirmation: 12 differential bugs reported, 7 confirmed by PyTorch developers",
+      "Coverage: 1,092 lines covered beyond PyTorch's unit tests"
     ],
     techStack: [
-      "Python", "GPT-4o", "PyTorch 2.6", "TensorFlow", "AST", "Docker", 
-      "Slurm", "NVIDIA A100", "pytest-inline", "Semantic Search", "Error Analysis"
+      "Python", "GPT-4o", "PyTorch", "AST", "Docker",
+      "Slurm", "pytest-inline", "RAG", "Semantic Search", "Error Analysis"
     ],
     codeLink: "https://github.com/ChaitanyaRS06/DIFFITESTGEN",
-    paperLink: "https://arxiv.org/abs/2024.differential-testing-framework",
+    paperLink: null,
     demoLink: null
   }
 };
@@ -307,7 +307,7 @@ const ProjectDetails = () => {
             
             <ButtonGroup>
               {project.codeLink && (
-                <Button href={project.codeLink} target="_blank" rel="noopener noreferrer" primary>
+                <Button href={project.codeLink} target="_blank" rel="noopener noreferrer" $primary>
                   View Code
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style={{ marginLeft: '8px' }}>
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>

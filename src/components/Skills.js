@@ -12,25 +12,6 @@ const SkillsWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  text-align: center;
-  position: relative;
-  
-  &:after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background-color: #2563eb;
-    margin: 0.75rem auto 3rem;
-    border-radius: 2px;
-  }
-`;
-
 const SkillsIntro = styled.p`
   text-align: center;
   max-width: 700px;
@@ -96,42 +77,14 @@ const SkillItem = styled.li`
   }
 `;
 
-const SkillBars = styled.div`
-  margin-top: 4rem;
-`;
-
-const SkillBarContainer = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const SkillBarHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  
-  span {
-    font-weight: 500;
-    color: #4b5563;
-  }
-`;
-
-const SkillBarOuter = styled.div`
-  height: 10px;
-  background-color: #e5e7eb;
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-const SkillBarInner = styled.div`
-  height: 100%;
-  background-color: #2563eb;
-  border-radius: 5px;
-  width: ${props => props.width || '0%'};
-  transition: width 1.5s ease;
-`;
-
 const Skills = () => {
   const skillsData = {
+    aiEngineering: [
+      "LLMs (GPT-4o, Claude)", "Agent Orchestration", "Agent Workflows",
+      "Agentic Patterns", "LangChain", "LangGraph", "RAG", "Memory Systems",
+      "AI Evaluations", "Inspect AI", "Langfuse", "LLM Observability",
+      "Prompt Engineering", "Vector Databases", "MCP"
+    ],
     languages: [
       "Java", "Python", "C", "C++", "SQL", "Bash scripting"
     ],
@@ -151,15 +104,6 @@ const Skills = () => {
       "Sports", "Leadership", "Event Management", "Writing", "Public Speaking", "Time Management"
     ]
   };
-  
-  const skillBars = [
-    { name: "Software Development", proficiency: "90%" },
-    { name: "Machine Learning", proficiency: "85%" },
-    { name: "Testing & Quality Assurance", proficiency: "80%" },
-    { name: "Web Development", proficiency: "75%" },
-    { name: "Research", proficiency: "85%" },
-    { name: "Problem Solving", proficiency: "90%" },
-  ];
 
   return (
     <SkillsContainer>
@@ -198,35 +142,6 @@ const Skills = () => {
             </motion.div>
           ))}
         </SkillsCategoriesContainer>
-        
-        <SkillBars>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <SectionTitle>Proficiency</SectionTitle>
-          </motion.div>
-          
-          {skillBars.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 + (index * 0.1) }}
-            >
-              <SkillBarContainer>
-                <SkillBarHeader>
-                  <span>{skill.name}</span>
-                  <span>{skill.proficiency}</span>
-                </SkillBarHeader>
-                <SkillBarOuter>
-                  <SkillBarInner width={skill.proficiency} />
-                </SkillBarOuter>
-              </SkillBarContainer>
-            </motion.div>
-          ))}
-        </SkillBars>
       </SkillsWrapper>
     </SkillsContainer>
   );
@@ -234,6 +149,8 @@ const Skills = () => {
 
 const formatCategoryName = (category) => {
   switch (category) {
+    case 'aiEngineering':
+      return 'AI Engineering & LLMs';
     case 'languages':
       return 'Programming Languages';
     case 'frameworks':
@@ -253,6 +170,12 @@ const formatCategoryName = (category) => {
 
 const getCategoryIcon = (category) => {
   switch (category) {
+    case 'aiEngineering':
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+        </svg>
+      );
     case 'languages':
       return (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
@@ -289,7 +212,7 @@ const getCategoryIcon = (category) => {
       return (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
           <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+          <path fillRule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
           <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
         </svg>
       );

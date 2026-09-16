@@ -15,6 +15,7 @@ const ContactWrapper = styled.div`
 `;
 
 const SectionTitle = styled.h2`
+  font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1f2937;
@@ -27,7 +28,7 @@ const SectionTitle = styled.h2`
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     margin: 0.75rem auto 3rem;
     border-radius: 2px;
   }
@@ -216,9 +217,9 @@ const FormMessage = styled.div`
   margin-bottom: 1.5rem;
   border-radius: 0.375rem;
   font-weight: 500;
-  background-color: ${props => props.success ? '#dcfce7' : '#fee2e2'};
-  color: ${props => props.success ? '#166534' : '#b91c1c'};
-  display: ${props => props.visible ? 'block' : 'none'};
+  background-color: ${props => props.$success ? '#dcfce7' : '#fee2e2'};
+  color: ${props => props.$success ? '#166534' : '#b91c1c'};
+  display: ${props => props.$visible ? 'block' : 'none'};
 `;
 
 const Contact = () => {
@@ -336,7 +337,7 @@ const Contact = () => {
                 </svg>
                 <div>
                   <h4>Location</h4>
-                  <p>Charlottesville, Virginia, USA</p>
+                  <p>Vienna, Virginia, USA</p>
                 </div>
               </ContactMethod>
               
@@ -351,18 +352,6 @@ const Contact = () => {
                   </p>
                 </div>
               </ContactMethod>
-              
-              {/* <ContactMethod>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                </svg>
-                <div>
-                  <h4>Phone</h4>
-                  <p>
-                    <a href="tel:+14342279248">(434)-227-9248</a>
-                  </p>
-                </div>
-              </ContactMethod> */}
               
               <SocialLinks>
                 <a href="https://github.com/ChaitanyaRS06" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -392,7 +381,7 @@ const Contact = () => {
             <ContactForm ref={form} onSubmit={handleSubmit}>
               <FormTitle>Send Me a Message</FormTitle>
               
-              <FormMessage visible={formMessage.visible} success={formMessage.success}>
+              <FormMessage $visible={formMessage.visible} $success={formMessage.success}>
                 {formMessage.text}
               </FormMessage>
               
