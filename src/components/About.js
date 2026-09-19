@@ -89,6 +89,18 @@ const AboutTextContainer = styled.div`
     color: #1f2937;
     margin-bottom: 1rem;
   }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+  }
 `;
 
 const HighlightText = styled.span`
@@ -352,7 +364,8 @@ const About = () => {
               <p>
                 My work spans production AI systems and research. During my Master's I focused on improving software
                 reliability through LLM-powered testing — culminating in my thesis, <HighlightText>DIFFITESTGEN</HighlightText>,
-                advised by Professor Wenxi Wang (UVA) and Professor Pengyu Nie (University of Waterloo).
+                advised by Professor <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a> (UVA)
+                and Professor <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a> (University of Waterloo).
               </p>
               
               <InfoGrid>

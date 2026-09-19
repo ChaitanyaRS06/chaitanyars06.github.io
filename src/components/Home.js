@@ -178,6 +178,18 @@ const PaperAuthors = styled.p`
     color: #1f2937;
     font-weight: 700;
   }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+  }
 `;
 
 const PaperVenue = styled.p`
@@ -438,7 +450,9 @@ const Home = () => {
             <PaperTag>Accepted · CASCON 2026</PaperTag>
             <PaperTitle>Differential Inline Testing: Framework, Test Generation, and Application</PaperTitle>
             <PaperAuthors>
-              <strong>Chaitanya Shahane</strong>, Derek Hansen, Wenxi Wang, and Pengyu Nie
+              <strong>Chaitanya Shahane</strong>, Derek Hansen,{' '}
+              <a href="https://wenxiwang.github.io/" target="_blank" rel="noopener noreferrer">Wenxi Wang</a>, and{' '}
+              <a href="https://pengyunie.github.io/" target="_blank" rel="noopener noreferrer">Pengyu Nie</a>
             </PaperAuthors>
             <PaperVenue>
               In International Conference on Collaborative Advances in Software and Computing (CASCON'26), to appear. November 2026. Toronto, Canada.
