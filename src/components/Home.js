@@ -495,7 +495,7 @@ const Home = () => {
             <PrimaryButton to="/about">More About Me</PrimaryButton>
             <SecondaryButton to="/contact">Contact Me</SecondaryButton>
             <ResumeButton 
-    href="https://drive.google.com/file/d/1Scz9vxcDauX9UFnh4A3DYQfJkSGoNwe4/view?usp=drive_link" 
+    href="https://drive.google.com/file/d/1C5YAgM2gkoZSsxzuNTyX0jQxUHMVB5pX/view?usp=sharing" 
     target="_blank" 
     rel="noopener noreferrer"
   >
