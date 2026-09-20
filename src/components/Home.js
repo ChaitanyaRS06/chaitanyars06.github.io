@@ -7,76 +7,97 @@ const HomeContainer = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
-  background: linear-gradient(to right, #f9fafb, #f3f4f6);
+  padding: 7.5rem 2rem 4.5rem;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 55%, #eef2ff 100%);
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 968px) {
+    padding: 6.5rem 1.5rem 3.5rem;
+  }
+`;
+
+/* Matches the 1200px wrapper the About/Skills/Contact pages already use, so the
+   hero sits on the same column as the rest of the site instead of spanning the
+   full viewport. */
+const HeroWrapper = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 4.5rem;
+  z-index: 2;
+
+  @media (max-width: 968px) {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 2.5rem;
+  }
+
   @media (max-width: 768px) {
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
-    padding-top: 6rem;
   }
 `;
 
 const ContentContainer = styled.div`
-  width: 50%;
-  padding: 2rem;
+  min-width: 0;
   z-index: 2;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 968px) {
     order: 2;
+    max-width: 640px;
   }
 `;
 
 const ImageContainer = styled.div`
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 968px) {
     order: 1;
-    margin-bottom: 2rem;
   }
 `;
 
 const ProfileImage = styled.div`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background-color: transparent; /* Changed from #2563eb to transparent */
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  
-
+  width: clamp(240px, 26vw, 360px);
+  aspect-ratio: 1 / 1;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  box-shadow: 0 30px 60px -22px rgba(37, 99, 235, 0.45);
 
   img {
+    display: block;
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    border: 5px solid #f9fafb;
     object-fit: cover;
     object-position: center 20%; /* This moves the image down - adjust the percentage as needed */
   }
 `;
 
 const Greeting = styled.h2`
-  font-size: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: #2563eb;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  margin-bottom: 0.75rem;
 `;
 
 const Name = styled.h1`
   font-family: 'Poppins', sans-serif;
-  font-size: 3.25rem;
+  font-size: clamp(2.5rem, 4.4vw, 3.75rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
   color: #1f2937;
   background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   -webkit-background-clip: text;
@@ -276,7 +297,7 @@ const SecondaryButton = styled(Link)`
 `;
 
 const ResumeButton = styled.a`
-  background-color: #10B981; /* A green color to differentiate from the other buttons */
+  background-color: #0f172a; /* Neutral slate so it sits with, not against, the blue/purple accents */
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -288,7 +309,7 @@ const ResumeButton = styled.a`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   &:hover {
-    background-color: #059669;
+    background-color: #1e293b;
     transform: translateY(-2px);
   }
 `;
@@ -400,6 +421,7 @@ const Home = () => {
         <Circle />
       </Shapes>
       
+      <HeroWrapper>
       <ContentContainer>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -501,6 +523,7 @@ const Home = () => {
 </ProfileImage>
         </motion.div>
       </ImageContainer>
+      </HeroWrapper>
     </HomeContainer>
   );
 };

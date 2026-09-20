@@ -90,7 +90,9 @@ const AboutTextContainer = styled.div`
     margin-bottom: 1rem;
   }
 
-  a {
+  /* Scoped to paragraphs on purpose: a bare \`a\` rule here outranks the
+     ResumeButton's own colour and renders its label blue-on-blue. */
+  p a {
     color: #2563eb;
     text-decoration: none;
     font-weight: 500;

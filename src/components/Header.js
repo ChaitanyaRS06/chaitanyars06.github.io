@@ -7,7 +7,9 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  /* Keeps the logo and links on the same 1200px column as the page content,
+     instead of pinning them to the window edges on wide screens. */
+  padding: 1.25rem max(2rem, calc((100% - 1200px) / 2));
   background-color: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
